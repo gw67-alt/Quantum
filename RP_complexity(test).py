@@ -83,7 +83,6 @@ def create_charge_detector_circuit(input1=0, input2=0):
     
     # Step 2: Control qubit superposition
     qc.h(control)
-    qc.barrier(label="Control_H")
     
     # Step 3: Apply charge characteristics (phases)
     qc.h(charge1)
@@ -492,4 +491,3 @@ if __name__ == "__main__":
         print("\nExecution finished.")
     else:
         print("\nExecution finished, but no results were generated (check for errors above).")
-
