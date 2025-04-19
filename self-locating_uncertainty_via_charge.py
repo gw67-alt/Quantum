@@ -41,7 +41,7 @@ except ImportError as e:
 
 # One-time setup (run this once)
 QiskitRuntimeService.save_account(
-    token='',
+    token='a4179ea065816da308a9d745ac63b5c472deddb3b2274d0bcdec33ce68d80b507a0a6b68ad2d1e0301440d8bf51956ef64831c006e3e1066dd73e586374a934a',
     channel='ibm_quantum',  # Specify the channel
     instance='ibm-q/open/main',  # This is the default open instance
     overwrite=True
@@ -87,9 +87,9 @@ def create_charge_detector_circuit(input1=0, input2=0):
     
     # Step 3: Apply charge characteristics (phases)
     qc.h(charge1)
-    qc.p(np.pi/4, charge1)  # Positive phase for charge1
+    qc.p(-np.pi/4, charge1)  # Positive phase for charge1
     qc.h(charge2)
-    qc.p(-np.pi/4, charge2) # Negative phase for charge2
+    qc.p(np.pi/4, charge2) # Negative phase for charge2
     qc.barrier(label="Charges")
     
     # Step 4: Setup measurement qubit interactions
