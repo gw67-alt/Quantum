@@ -41,7 +41,7 @@ except ImportError as e:
 
 # One-time setup (run this once)
 QiskitRuntimeService.save_account(
-    token='a4179ea065816da308a9d745ac63b5c472deddb3b2274d0bcdec33ce68d80b507a0a6b68ad2d1e0301440d8bf51956ef64831c006e3e1066dd73e586374a934a',
+    token='',
     channel='ibm_quantum',  # Specify the channel
     instance='ibm-q/open/main',  # This is the default open instance
     overwrite=True
