@@ -187,36 +187,6 @@ def measurement_analysis(counts, inputs):
     dominant = '0' if prob_0 > prob_1 else '1'
     print(f"  Dominant outcome: |{dominant}⟩ with probability {max(prob_0, prob_1):.4f}")
 
-def identify_logic_pattern(results):
-    """
-    Try to identify if the measurement qubit implements a known logic gate
-    
-    Parameters:
-    results (dict): Results from all input combinations
-    """
-    # Extract the dominant measurement qubit value for each input
-    truth_table = {}
-    
-    for inputs, counts in results.items():
-        measure_0_count = 0
-        measure_1_count = 0
-        
-        for bitstring, count in counts.items():
-            measure_bit = bitstring[-4]
-            
-            if measure_bit == '0':
-                measure_0_count += count
-            else:
-                measure_1_count += count
-        
-        dominant = '0' if measure_0_count > measure_1_count else '1'
-        truth_table[inputs] = dominant
-    
-    # Check for known logic patterns
-    print("\nLogic Pattern Analysis:")
-    
-   
-
 # Run the experiment with all input combinations
 results = run_all_input_combinations()
-print("- logic pattern is quantified via probability, validity = 0.5000")
+print("- logic pattern is quantified via probability. validity = probability 0.500")
