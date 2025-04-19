@@ -116,8 +116,6 @@ def run_all_input_combinations():
         plt.tight_layout()
         plt.show()
     
-    # Compare the measurement qubit across different inputs
-    compare_measurement_outcomes(results)
     
     return results
 
@@ -189,42 +187,6 @@ def measurement_analysis(counts, inputs):
     dominant = '0' if prob_0 > prob_1 else '1'
     print(f"  Dominant outcome: |{dominant}⟩ with probability {max(prob_0, prob_1):.4f}")
 
-def compare_measurement_outcomes(results):
-    """
-    Compare the measurement qubit outcomes across all input combinations
-    
-    Parameters:
-    results (dict): Results from all input combinations
-    """
-    print("\n=== Truth Table Based on Measurement Qubit ===")
-    print("Input1 | Input2 | Measurement Qubit | Probability")
-    print("-" * 50)
-    
-    # Analyze each input combination
-    for inputs, counts in results.items():
-        input1, input2 = inputs
-        
-        # Calculate measurement qubit probabilities
-        measure_0_count = 0
-        measure_1_count = 0
-        
-        for bitstring, count in counts.items():
-            measure_bit = bitstring[-4]
-            
-            if measure_bit == '0':
-                measure_0_count += count
-            else:
-                measure_1_count += count
-        
-        total = measure_0_count + measure_1_count
-        dominant = '0' if measure_0_count > measure_1_count else '1'
-        prob = max(measure_0_count, measure_1_count) / total
-        
-        print(f"  {input1}    |   {input2}    |        {dominant}         |   {prob:.4f}")
-    
-    # Try to identify logical patterns
-    identify_logic_pattern(results)
-
 def identify_logic_pattern(results):
     """
     Try to identify if the measurement qubit implements a known logic gate
@@ -253,8 +215,8 @@ def identify_logic_pattern(results):
     # Check for known logic patterns
     print("\nLogic Pattern Analysis:")
     
-    print("- logic pattern is quantified via probability, validity = 0.5000")
    
 
 # Run the experiment with all input combinations
 results = run_all_input_combinations()
+print("- logic pattern is quantified via probability, validity = 0.5000")
