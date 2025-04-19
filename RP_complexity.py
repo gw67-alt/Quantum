@@ -72,8 +72,8 @@ def create_charge_detector_circuit(input1=0, input2=0):
     qc = QuantumCircuit(qreg, creg, name=f"ChargeDetect_Inputs_{input1}{input2}")
     
     control = qreg[0]
-    charge1 = qreg[1]
-    charge2 = qreg[2]
+    charge1 = qreg[2]
+    charge2 = qreg[1]
     measure_q = qreg[3] # Renamed to avoid conflict with measure method
     
     # Step 1: Initialize input states
@@ -96,8 +96,8 @@ def create_charge_detector_circuit(input1=0, input2=0):
     qc.h(measure_q)
     qc.p(np.pi/4, control)   # Interaction with control
     qc.p(np.pi/4, measure_q) # Self-interaction/phase setup for measure
-    qc.p(np.pi/8, charge1)   # Positive coupling to charge1
-    qc.p(-np.pi/8, charge2)  # Negative coupling to charge2
+    qc.p(-np.pi/8, charge1)   # Positive coupling to charge1
+    qc.p(np.pi/8, charge2)  # Negative coupling to charge2
     qc.barrier(label="Interaction")
 
     # Step 5: Final interference for measurement basis change
