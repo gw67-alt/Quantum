@@ -36,6 +36,13 @@ except ImportError as e:
       Session = None
       SamplerOptions = None
 
+# One-time setup (run this once)
+QiskitRuntimeService.save_account(
+    token='',
+    channel='ibm_quantum',  # Specify the channel
+    instance='ibm-q/open/main',  # This is the default open instance
+    overwrite=True
+)
 # =============================================================================
 # Circuit Creation Function (Phase-Based AND)
 # =============================================================================
