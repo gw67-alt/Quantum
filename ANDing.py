@@ -1,4 +1,7 @@
 
+
+
+
 # =============================================================================
 # Imports
 # =============================================================================
@@ -239,7 +242,11 @@ def run_and_circuit_ibm_runtime(use_simulator=True, backend_name=None):
     input_combinations = [format(i, '02b') for i in range(4)]
     results = {}
     print(f"\nRunning circuits on backend: {actual_backend_name}")
-    options = SamplerOptions(optimization_level=1, resilience_level=1)
+
+    # With this:
+    options = SamplerOptions()
+    options.transpilation.optimization_level = 1
+    options.resilience.level = 1
     try: options.environment.log_level = "WARNING"
     except AttributeError: pass
     print(f"Using SamplerOptions: optimization_level={options.optimization_level}, resilience_level={options.resilience_level}")
