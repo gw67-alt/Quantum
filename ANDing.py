@@ -336,11 +336,27 @@ if __name__ == "__main__":
     # Timestamp and location context
     now_local = datetime.datetime.now(datetime.timezone.utc).astimezone()
     print(f"Current Time: {now_local.strftime('%Y-%m-%d %H:%M:%S %Z%z')}")
-    print(f"Location Context: Golden Square, Victoria, Australia")
     print("(Computes A AND B using H-CCZ-H phase encoding)")
     print("(Output=1 ('high') if A=1, B=1; Output=0 ('low') otherwise)")
     print("-" * 60)
+    # from your_script import create_and_circuit_phase_based
 
+    # 2. Create an instance of the circuit (e.g., for input '11')
+    input_example = "11"
+    qc = create_and_circuit_phase_based(input_AB=input_example)
+
+    # 3. Use the draw() method and print the result
+    #    output='text' gives a text-based diagram
+    #    fold controls line wrapping (adjust as needed)
+    try:
+        print(f"Circuit diagram for input |{input_example}>:")
+        print(qc.draw(output='text', fold=80))
+    except ImportError:
+        print("Circuit drawing requires pylatexenc. Using basic print(qc):")
+        print(qc)
+    except Exception as e:
+         print(f"An error occurred during drawing: {e}")
+         print(qc) # Fallback
     run_option = input(
         "Choose run option:\n"
         "  1. Local Simulator (qiskit-aer, faster, ideal)\n"
