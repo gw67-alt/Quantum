@@ -114,13 +114,13 @@ def create_and_circuit_phase_based(input_AB="00"):
     creg = ClassicalRegister(1, 'c') # Measure only q[2]
     qc = QuantumCircuit(qreg, creg, name=f"PhaseAND_In_{input_AB}")
 
-    in_A = qreg[0] # Input A
-    in_B = qreg[1] # Input B
+    in_A = qreg[1] # Input A
+    in_B = qreg[0] # Input B
     readout_C = qreg[2] # Readout C
 
     # Step 1: Initialize Input States
     if input_AB[0] == '1': qc.x(in_A)
-    if input_AB[1] == '0': qc.x(in_B)
+    if input_AB[1] == '1': qc.x(in_B)
     # readout_C starts as |0>
     qc.barrier(label="Inputs")
 
