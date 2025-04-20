@@ -43,7 +43,7 @@ except ImportError as e:
      
 # One-time setup (run this once)
 QiskitRuntimeService.save_account(
-    token='',
+    token='a4179ea065816da308a9d745ac63b5c472deddb3b2274d0bcdec33ce68d80b507a0a6b68ad2d1e0301440d8bf51956ef64831c006e3e1066dd73e586374a934a',
     channel='ibm_quantum',  # Specify the channel
     instance='ibm-q/open/main',  # This is the default open instance
     overwrite=True
@@ -120,7 +120,7 @@ def create_and_circuit_phase_based(input_AB="00"):
 
     # Step 1: Initialize Input States
     if input_AB[0] == '1': qc.x(in_A)
-    if input_AB[1] == '1': qc.x(in_B)
+    if input_AB[1] == '0': qc.x(in_B)
     # readout_C starts as |0>
     qc.barrier(label="Inputs")
 
