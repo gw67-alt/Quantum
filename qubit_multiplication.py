@@ -452,7 +452,7 @@ if __name__ == "__main__":
 
     # --- Test Configurations ---
     test_configs = [
-        {"wave_peak": "1", "a": 3, "b": 150, "expected": 450},
+        {"wave_peak": "1", "a": 3, "b": 15000000000000, "expected": 45000000000000},
         {"wave_peak": "1", "a": 7, "b": 3, "expected": 21},
         {"wave_peak": "1", "a": 4, "b": 4, "expected": 16},
         {"wave_peak": "1", "a": 3, "b": 6, "expected": 18},
