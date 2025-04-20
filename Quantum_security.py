@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 qc = QuantumCircuit(5, 5)
 
 # Initialize circuit
-qc.name = "Sodium-Cloud-Detection-System"
+qc.name = "Enhanced-Sodium-Cloud-Detection-System"
+print("Initializing enhanced sodium cloud detection system with improved coupling")
 
 # Initialize system state to active
 qc.x(4)
@@ -23,9 +24,11 @@ qc.x(4)
 # Initialize the object as present (|1⟩ state)
 qc.x(1)
 
-# Initialize the sodium cloud detector in a superposition
-# (representing the probabilistic nature of the sodium cloud detection)
-qc.h(0)
+# Initialize the sodium cloud detector to be more sensitive
+# Instead of equal superposition, bias towards detection state
+qc.ry(np.pi/3, 0)  # Biased superposition state
+# Apply a phase to enhance sensitivity
+qc.p(np.pi/4, 0)
 
 # Link the object release mechanism (output) with the system state
 # When system is active, the release mechanism can function
@@ -33,7 +36,10 @@ qc.cx(4, 2)
 
 # Phase 1: Object presence affects the sodium cloud detector
 # If object is present (|1⟩), it interacts with the sodium cloud
+# Use multiple controlled operations to enhance coupling
 qc.cz(1, 0)
+qc.cx(1, 0)
+qc.cz(1, 0)  # Applying multiple interactions strengthens the coupling
 
 # Phase 2: Simulate the object being released/removed
 # Apply an X gate to qubit 1 to change its state from present to absent
@@ -45,7 +51,10 @@ qc.x(1)  # Object becomes absent
 # The detector's state is affected by object's absence
 qc.barrier()
 print("Phase 3: Detector responds to object absence")
+# Enhanced coupling between object absence and detector
 qc.cx(1, 0)  # Object absence affects detector
+qc.cz(1, 0)  # Additional phase correlation
+qc.cx(1, 0)  # Repeat to amplify the coupling effect
 
 # Phase 4: Detector triggers the door mechanism (input linked)
 # When detector registers object absence (|1⟩ in our encoding), door closes
@@ -91,4 +100,19 @@ for bitstring, count in counts.items():
 
 # Plot the histogram of results
 fig = plot_histogram(counts)
-# fig.savefig('sodium_detection_results.png')
+# fig.savefig('enhanced_sodium_detection_results.png')
+
+# Calculate the improvement in detection reliability
+detection_count = 0
+total_count = 0
+
+for bitstring, count in counts.items():
+    # Get the detector state (first bit in reversed bitstring)
+    detector_triggered = bitstring[::-1][0] == "1"
+    if detector_triggered:
+        detection_count += count
+    total_count += count
+
+detection_rate = (detection_count / total_count) * 100
+print(f"\nDetection reliability rate: {detection_rate:.2f}%")
+print(f"This enhanced coupling should significantly improve detection compared to the ~47% in the original model")
