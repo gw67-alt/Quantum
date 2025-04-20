@@ -34,13 +34,7 @@ except ImportError as e:
       Sampler = None
       Session = None
       SamplerOptions = None # Set placeholder if import fails
-# One-time setup (run this once)
-QiskitRuntimeService.save_account(
-    token='',
-    channel='ibm_quantum',  # Specify the channel
-    instance='ibm-q/open/main',  # This is the default open instance
-    overwrite=True
-)
+
 # --- IBM Account Setup (Run once if needed) ---
 # Uncomment and run the following lines ONCE to save your API token if you haven't already.
 # Replace 'YOUR_IBM_QUANTUM_API_TOKEN' with your actual token.
@@ -400,7 +394,7 @@ def run_on_ibm_hardware(test_configs, backend_name=None, use_simulator=False):
                      measured_keys = list(counts.keys())
                      print(f"  Expected binary (ideal): {expected_bin_string}")
                      # FIX: Print sorted counts
-                     print(f"  Measured outcomes (sorted by count): {sorted_counts}")
+                     #print(f"  Measured outcomes (sorted by count): {sorted_counts}")
                      # Qiskit counts keys are LSB-first strings
                      if measured_keys:
                          # Get the top measured outcome (first element after sorting)
@@ -458,7 +452,7 @@ if __name__ == "__main__":
 
     # --- Test Configurations ---
     test_configs = [
-        {"wave_peak": "1", "a": 3, "b": 50, "expected": 150},
+        {"wave_peak": "1", "a": 3, "b": 150, "expected": 450},
         {"wave_peak": "1", "a": 7, "b": 3, "expected": 21},
         {"wave_peak": "1", "a": 4, "b": 4, "expected": 16},
         {"wave_peak": "1", "a": 3, "b": 6, "expected": 18},
