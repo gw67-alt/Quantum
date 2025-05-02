@@ -1,0 +1,1 @@
+Zero compressibility of a diffeomorphism represents the non existence of a solution.
