@@ -1,3 +1,4 @@
+#use curvature detection after unblocking photon lattice for diffeomorphic analysis
 import cv2
 import numpy as np
 import time
