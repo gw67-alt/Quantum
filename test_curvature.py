@@ -487,7 +487,7 @@ class CameraStream:
                 ret, frame = self.cap.read()
                 if not ret or frame is None:
                     print("Warning: Failed to capture frame.")
-                    time.sleep(0.5)
+                    #time.sleep(0.5)
                     if not self.cap.isOpened(): print("Camera disconnected. Exiting."); break
                     continue
 
