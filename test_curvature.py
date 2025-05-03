@@ -120,7 +120,7 @@ class DataPlotter:
         if not times_plot:
             return self.straight_line_plot, self.curved_line_plot, self.ratio_plot, self.total_plot
 
-        self.straight_line_plot.set_data(times_plot, straight_plot)
+        #self.straight_line_plot.set_data(times_plot, straight_plot)
         self.curved_line_plot.set_data(times_plot, curved_plot)
         self.ratio_plot.set_data(times_plot, ratio_plot_data)
         total_lines = [s + c for s, c in zip(straight_plot, curved_plot)]
