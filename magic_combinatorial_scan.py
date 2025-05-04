@@ -91,12 +91,13 @@ def number_guessing_game():
 
             # --- Check the guess ---
 
-            if data[target_number].split(",")[0] and data[target_number].split(",")[1] and data[target_number].split(",")[2]:
+            if data[guess].split(",")[0] and data[guess].split(",")[1] and data[guess].split(",")[2]:
                 n = 1
                 m = 0
                 for i in range(100):
+                    n+=2
                     for j in range(100):
-                        if i == 50 and j == data[target_number].split(",")[1] and k == data[target_number].split(",")[2]:
+                        if n == 50 and j == data[guess].split(",")[1] and k == data[guess].split(",")[2]:
                                        
                             #algorithm stop condition & apply magic win credits for path elongation
                             game_state["credits"] += WIN_CREDITS
