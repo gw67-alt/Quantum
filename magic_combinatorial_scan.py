@@ -97,7 +97,7 @@ def number_guessing_game():
                 for i in range(100):
                     n+=2
                     for j in range(100):
-                        if n == 50 and i == data[guess].split(",")[0] and j == data[guess].split(",")[1]:
+                        if n == 1250 and i == data[guess].split(",")[0] and j == data[guess].split(",")[1]:
                                        
                             #algorithm stop condition & apply magic win credits for path elongation
                             game_state["credits"] += WIN_CREDITS
