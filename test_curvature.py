@@ -788,7 +788,7 @@ class CameraStream:
                     if not self.cap.isOpened():
                          print("Camera disconnected. Exiting.")
                          break
-                    time.sleep(0.05) # Wait a bit before retrying
+                    #time.sleep(0.05) # Wait a bit before retrying
                     continue
 
                 # --- Process Frame (including ROI analysis, drawing, etc.) ---
@@ -1057,7 +1057,7 @@ def list_available_cameras(max_check=10):
     for i in range(max_check):
         cap_test = cv2.VideoCapture(i)
         # Some systems might need a slight delay or a read attempt
-        time.sleep(0.05)
+        #time.sleep(0.05)
         is_opened = cap_test.isOpened()
         if is_opened:
             # Try reading a frame as a more robust check
