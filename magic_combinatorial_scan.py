@@ -92,45 +92,42 @@ def number_guessing_game():
             # --- Check the guess ---
 
             if data[target_number].split(",")[0] and data[target_number].split(",")[1] and data[target_number].split(",")[2]:
-                n = 0
+                n = 1
                 m = 0
                 for i in range(100):
                     for j in range(100):
-                        m+=1
-                        for k in range(100):
-                            n+=2
-                            if m == 42 and n == 84 and i == data[target_number].split(",")[0] and j == data[target_number].split(",")[1] and k == data[target_number].split(",")[2]:
-                                           
-                                #algorithm stop condition & apply magic win credits for path elongation
-                                game_state["credits"] += WIN_CREDITS
-                                result_label.config(text=f"You guessed correctly in {game_state['attempts']} tries! You win {WIN_CREDITS} credits!", foreground="#4CAF50") # Green
-                                credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#4CAF50")
-                                check_button.config(state=tk.DISABLED)
-                                slider.config(state=tk.DISABLED)
-                                return # Exit function early on correct guess
+                        if i == 50 and j == data[target_number].split(",")[1] and k == data[target_number].split(",")[2]:
+                                       
+                            #algorithm stop condition & apply magic win credits for path elongation
+                            game_state["credits"] += WIN_CREDITS
+                            result_label.config(text=f"You guessed correctly in {game_state['attempts']} tries! You win {WIN_CREDITS} credits!", foreground="#4CAF50") # Green
+                            credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#4CAF50")
+                            check_button.config(state=tk.DISABLED)
+                            slider.config(state=tk.DISABLED)
+                            return # Exit function early on correct guess
 
-                            elif guess < target_number:
-                                game_state["credits"] -= COST_PER_GUESS
-                                # Corrected: Use foreground instead of fg
-                                credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
+                        elif guess < target_number:
+                            game_state["credits"] -= COST_PER_GUESS
+                            # Corrected: Use foreground instead of fg
+                            credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
 
-                            elif guess > target_number:
-                                game_state["credits"] -= COST_PER_GUESS
-                                # Corrected: Use foreground instead of fg
-                                credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
+                        elif guess > target_number:
+                            game_state["credits"] -= COST_PER_GUESS
+                            # Corrected: Use foreground instead of fg
+                            credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
 
-                            # --- Check for game over conditions (AFTER checking the guess) ---
-                            # Check attempts first
-                            if game_state["attempts"] >= max_attempts and guess != target_number: # Added check to ensure it wasn't the winning guess
-                                result_label.config(text=f"No more attempts! The number was {target_number}.", foreground="#F44336")  # Red
-                                check_button.config(state=tk.DISABLED)
-                                slider.config(state=tk.DISABLED)
-                            # Then check credits (could run out on the last attempt)
-                            elif game_state["credits"] <= 0: # Use elif to avoid overwriting the 'no attempts' message if both happen
-                                result_label.config(text="You have no more credits. Game Over!", foreground="#F44336") # Red
-                                credits_label.config(text="Credits: 0", foreground="#F44336") # Ensure credits show 0
-                                check_button.config(state=tk.DISABLED)
-                                slider.config(state=tk.DISABLED)
+                        # --- Check for game over conditions (AFTER checking the guess) ---
+                        # Check attempts first
+                        if game_state["attempts"] >= max_attempts and guess != target_number: # Added check to ensure it wasn't the winning guess
+                            result_label.config(text=f"No more attempts! The number was {target_number}.", foreground="#F44336")  # Red
+                            check_button.config(state=tk.DISABLED)
+                            slider.config(state=tk.DISABLED)
+                        # Then check credits (could run out on the last attempt)
+                        elif game_state["credits"] <= 0: # Use elif to avoid overwriting the 'no attempts' message if both happen
+                            result_label.config(text="You have no more credits. Game Over!", foreground="#F44336") # Red
+                            credits_label.config(text="Credits: 0", foreground="#F44336") # Ensure credits show 0
+                            check_button.config(state=tk.DISABLED)
+                            slider.config(state=tk.DISABLED)
 
         except ValueError:
             # This shouldn't happen with the slider, but good practice
