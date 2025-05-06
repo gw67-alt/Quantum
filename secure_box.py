@@ -14,71 +14,59 @@ path_threshold = 9
 
 import requests
 import sys # Used for more informative error messages
+# Connect to the serial port
+port="COM7"
+baud_rate=9600
+timeout=15.0
+ser = serial.Serial(
+    port=port,
+    baudrate=baud_rate,
+    timeout=timeout  # This timeout applies to ser.readline()
+)
 
-
-def send_data_to_serial(data_to_send, port="COM7", baud_rate=9600, timeout=15.0):
+def send_data_to_serial(data_to_send):
     """
     Sends string data to the specified serial port and attempts to read a response
     until a newline character is encountered or a timeout occurs.
     """
-    ser = None  # Initialize ser to None for the finally block
     received_line_str = None
 
-    try:
-        # Connect to the serial port
-        ser = serial.Serial(
-            port=port,
-            baudrate=baud_rate,
-            timeout=timeout  # This timeout applies to ser.readline()
-        )
-        # A very short delay for the port to open and settle, especially if DTR causes a reset on the device.
-        time.sleep(0.2) # Reduced initial delay
+    
+    # A very short delay for the port to open and settle, especially if DTR causes a reset on the device.
+    time.sleep(0.2) # Reduced initial delay
 
-        # It's good practice to clear any stale data from buffers before communication
-        ser.reset_input_buffer()
-        ser.reset_output_buffer()
+    # It's good practice to clear any stale data from buffers before communication
+    ser.reset_input_buffer()
+    ser.reset_output_buffer()
 
 
-        # Encode and send data
-        # If your device specifically requires a newline to process the command, ensure it's here:
-        # if not data_to_send.endswith('\n'):
-        #     data_to_send_actual = data_to_send + '\n'
-        # else:
-        #     data_to_send_actual = data_to_send
-        # For this example, we'll send what's given:
-        data_to_send_actual = data_to_send
+    # Encode and send data
+    # If your device specifically requires a newline to process the command, ensure it's here:
+    # if not data_to_send.endswith('\n'):
+    #     data_to_send_actual = data_to_send + '\n'
+    # else:
+    #     data_to_send_actual = data_to_send
+    # For this example, we'll send what's given:
+    data_to_send_actual = data_to_send
 
-        encoded_data = data_to_send_actual.encode('utf-8')
-        bytes_sent = ser.write(encoded_data)
-        ser.flush() # Ensure all data is physically sent
+    encoded_data = data_to_send_actual.encode('utf-8')
+    bytes_sent = ser.write(encoded_data)
+    ser.flush() # Ensure all data is physically sent
 
-        # --- Reading the response ---
-        # Directly call readline(). It will wait for a newline or until the 'timeout' (15s) expires.
-        # Connect to the serial port
-       
-        
-        # Give the serial connection time to establish
-        time.sleep(0.2)
-        
-        # Read a line from serial
-        line = ser.readline().decode('utf-8')
-        
-        # Close the connection
-        ser.close()
-        
-        return line
-
-    except serial.SerialException as e:
-        print(f"Serial error on port {port}: {e}")
-        return None
-    except Exception as e_general:
-        print(f"An unexpected error occurred: {e_general}")
-        return None
-    finally:
-        if ser and ser.is_open:
-            ser.close()
-            print(f"Closed serial port {port}")
-
+    # --- Reading the response ---
+    # Directly call readline(). It will wait for a newline or until the 'timeout' (15s) expires.
+    # Connect to the serial port
+    
+    
+    # Give the serial connection time to establish
+    time.sleep(0.2)
+    
+    # Read a line from serial
+    line = ser.readline().decode('utf-8')
+    
+    # Close the connection
+    
+    return line
 
 
     
