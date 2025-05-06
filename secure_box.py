@@ -169,7 +169,16 @@ def number_guessing_game():
                 game_state["credits"] -= COST_PER_GUESS
                 # Corrected: Use foreground instead of fg
                 credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
+            
+            elif guess < int(receive_line):
+                game_state["credits"] -= COST_PER_GUESS
+                # Corrected: Use foreground instead of fg
+                credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
 
+            elif guess > int(receive_line):
+                game_state["credits"] -= COST_PER_GUESS
+                # Corrected: Use foreground instead of fg
+                credits_label.config(text=f"Credits: {game_state['credits']}", foreground="#FF9800")
 
             # --- Check for game over conditions (AFTER checking the guess) ---
             # Check attempts first
