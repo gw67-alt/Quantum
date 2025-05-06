@@ -16,35 +16,68 @@ import requests
 import sys # Used for more informative error messages
 
 
-def receive_line_from_serial(port="COM7", baud_rate=9600, timeout=2.0):
+def send_data_to_serial(data_to_send, port="COM7", baud_rate=9600, timeout=15.0):
     """
-    Receive a single line from the specified serial port.
-    
-    Args:
-        port (str): The serial port to connect to (e.g., "COM3" on Windows or "/dev/ttyUSB0" on Linux/Mac)
-        baud_rate (int): The baud rate for the serial connection
-        timeout (float): Read timeout in seconds
+    Sends string data to the specified serial port and attempts to read a response
+    until a newline character is encountered or a timeout occurs.
+    """
+    ser = None  # Initialize ser to None for the finally block
+    received_line_str = None
+
+    try:
+        # Connect to the serial port
+        ser = serial.Serial(
+            port=port,
+            baudrate=baud_rate,
+            timeout=timeout  # This timeout applies to ser.readline()
+        )
+        # A very short delay for the port to open and settle, especially if DTR causes a reset on the device.
+        time.sleep(0.2) # Reduced initial delay
+
+        # It's good practice to clear any stale data from buffers before communication
+        ser.reset_input_buffer()
+        ser.reset_output_buffer()
+
+
+        # Encode and send data
+        # If your device specifically requires a newline to process the command, ensure it's here:
+        # if not data_to_send.endswith('\n'):
+        #     data_to_send_actual = data_to_send + '\n'
+        # else:
+        #     data_to_send_actual = data_to_send
+        # For this example, we'll send what's given:
+        data_to_send_actual = data_to_send
+
+        encoded_data = data_to_send_actual.encode('utf-8')
+        bytes_sent = ser.write(encoded_data)
+        ser.flush() # Ensure all data is physically sent
+
+        # --- Reading the response ---
+        # Directly call readline(). It will wait for a newline or until the 'timeout' (15s) expires.
+        # Connect to the serial port
+       
         
-    Returns:
-        str: The received line, or None if no data was received
-    """
-    # Connect to the serial port
-    ser = serial.Serial(
-        port=port,
-        baudrate=baud_rate,
-        timeout=timeout
-    )
-    
-    # Give the serial connection time to establish
-    time.sleep(0.2)
-    
-    # Read a line from serial
-    line = ser.readline().decode('utf-8')
-    
-    # Close the connection
-    ser.close()
-    
-    return line
+        # Give the serial connection time to establish
+        time.sleep(0.2)
+        
+        # Read a line from serial
+        line = ser.readline().decode('utf-8')
+        
+        # Close the connection
+        ser.close()
+        
+        return line
+
+    except serial.SerialException as e:
+        print(f"Serial error on port {port}: {e}")
+        return None
+    except Exception as e_general:
+        print(f"An unexpected error occurred: {e_general}")
+        return None
+    finally:
+        if ser and ser.is_open:
+            ser.close()
+            print(f"Closed serial port {port}")
 
 
 
@@ -122,9 +155,8 @@ def number_guessing_game():
             attempts_label.config(text=f"Attempts: {game_state['attempts']}/{max_attempts}")
 
             # --- Check the guess ---
-            receive_line = receive_line_from_serial()
+            receive_line = send_data_to_serial('1')
             print(receive_line)
-
             if guess == receive_line:
 
                 game_state["credits"] += WIN_CREDITS
