@@ -21,7 +21,7 @@ The Diffeomorphic Quantum Measurement System consists of the following key compo
 
 3. **Variable Focus Depth Optical System**: An optical apparatus capable of dynamically altering its focus depth, creating controlled diffeomorphisms in the measurement volume.
 
-4. **IR Light Bath and Detector**: Infrared illumination system coupled with detectors to measure probability escape phenomena associated with quantum states.
+4. **IR Light Bath and Detector**: Infrared illumination system coupled with detectors to provide probability escape phenomena associated with quantum states.
 
 5. **Diffeomorphism Detector**: Specialized detection system positioned below the oscillating sphere to measure the geometric transformations occurring within the focused region.
 
