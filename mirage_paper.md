@@ -17,7 +17,7 @@ The Diffeomorphic Quantum Measurement System consists of the following key compo
 
 1. **Oscillating Sphere**: A central sphere capable of precise oscillations, serving as the reference geometry for quantum state mapping.
 
-2. **Photonic Lattice**: A three-dimensional array of photonic nodes surrounding the oscillating sphere, forming a structured medium for wave function propagation.
+2. **Photonic Lattice**: A two-dimensional array of photonic nodes placed near the oscillating sphere, forming a structured medium for wave function propagation.
 
 3. **Variable Focus Depth Optical System**: An optical apparatus capable of dynamically altering its focus depth, creating controlled diffeomorphisms in the measurement volume.
 
