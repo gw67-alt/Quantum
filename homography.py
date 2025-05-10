@@ -10,7 +10,7 @@ from collections import deque
 
 # --- OpenCV Configuration (from previous script) ---
 MIN_MATCH_COUNT = 10
-LOWE_RATIO_TEST = 0.15
+LOWE_RATIO_TEST = 0.75
 KEY_TO_CYCLE_QT = Qt.Key_N
 KEY_TO_QUIT_QT = Qt.Key_Q
 
