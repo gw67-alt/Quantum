@@ -10,13 +10,13 @@ from collections import deque
 
 # --- OpenCV Configuration (from previous script) ---
 MIN_MATCH_COUNT = 10
-LOWE_RATIO_TEST = 0.75
+LOWE_RATIO_TEST = 0.15
 KEY_TO_CYCLE_QT = Qt.Key_N
 KEY_TO_QUIT_QT = Qt.Key_Q
 
 # --- Chart Configuration ---
 MAX_CHART_POINTS = 100  # Number of data points to display on the chart
-MOVING_AVG_WINDOW = 10  # Window size for the moving average
+MOVING_AVG_WINDOW = 100  # Window size for the moving average
 
 # --- State Management Object (Same as before) ---
 class AppState(QObject):
