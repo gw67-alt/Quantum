@@ -10,7 +10,7 @@ from collections import deque
 
 # --- OpenCV Configuration (from previous script) ---
 MIN_MATCH_COUNT = 10
-LOWE_RATIO_TEST = 0.05
+LOWE_RATIO_TEST = 0.10
 KEY_TO_CYCLE_QT = Qt.Key_N
 KEY_TO_QUIT_QT = Qt.Key_Q
 
@@ -152,7 +152,7 @@ class OpenCVThread(QThread):
                     if num_good_matches >= MIN_MATCH_COUNT:
                         src_pts = np.float32([self.reference_kp[m.queryIdx].pt for m in good_matches]).reshape(-1, 1, 2)
                         dst_pts = np.float32([current_kp[m.trainIdx].pt for m in good_matches]).reshape(-1, 1, 2)
-                        H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+                        H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 150.0)
                         if H is None:
                              num_good_matches = -1
             self.matches_count_ready.emit(num_good_matches)
