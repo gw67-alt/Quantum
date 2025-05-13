@@ -284,7 +284,7 @@ class MainWindow(QMainWindow):
                 if is_above or is_below: 
                     
                     if self.preset_guess_sequence:
-                        current_preset_output = self.preset_guess_sequence.popleft()
+                        current_preset_output = self.preset_guess_sequence.popleft() #parallelize
 
                         comparison_text = f"Raw ({current_preset_output}) is {'High' if is_above else 'Low'} Avg ({current_avg:.2f})"
 
