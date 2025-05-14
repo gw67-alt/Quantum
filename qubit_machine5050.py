@@ -25,8 +25,7 @@ if original_array != load:
     print("RANDOMIZED!")
 else:
     print("NOT randomized (this shouldn't happen with random.shuffle on a list with more than one unique ordering)")
-if load != array:
-    print("RANDOMIZED!")
+
 preset_guess_sequence = deque(load) # Example sequence
 
 STARTING_CREDITS = 10000
