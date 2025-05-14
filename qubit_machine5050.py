@@ -7,8 +7,27 @@ from PyQt5.QtCore import QThread, pyqtSignal, Qt, QTimer, QObject
 from PyQt5.QtGui import QImage, QPixmap
 import pyqtgraph as pg
 from collections import deque
+import random
 raw_value_for_guess = 2
+array = [
+            "High", "Low", "High", "High", "Low", "Low", "High", "Low", "High", "Low", 
+            "High", "Low", "High", "Low", "High", "High", "High", "Low", "Low", "Low",
+            "High", "High", "Low", "High", "Low", "Low", "Low", "High", "High", "High",
+            "High", "Low", "High", "High", "Low", "Low", "High", "Low", "High", "Low", 
+            "High", "Low", "High", "Low", "High", "High", "High", "Low", "Low", "Low",
+            "High", "High", "Low", "High", "Low", "Low", "Low", "High", "High", "High"
+        ]
+original_array = array[:] # Create a shallow copy of the original array
+load = array
+random.shuffle(load)
 
+if original_array != load:
+    print("RANDOMIZED!")
+else:
+    print("NOT randomized (this shouldn't happen with random.shuffle on a list with more than one unique ordering)")
+if load != array:
+    print("RANDOMIZED!")
+preset_guess_sequence = deque(load) # Example sequence
 
 STARTING_CREDITS = 10000
 COST_PER_GUESS = 1
@@ -225,11 +244,6 @@ class MainWindow(QMainWindow):
         self.current_time_step = 0
 
         self.guess_trigger_sample_counter = 0
-        self.preset_guess_sequence = deque([
-            "High", "Low", "High", "High", "Low", "Low", "High", "Low", "High", "Low", 
-            "High", "Low", "High", "Low", "High", "High", "High", "Low", "Low", "Low",
-            "High", "High", "Low", "High", "Low", "Low", "Low", "High", "High", "High"
-        ]) # Example sequence
 
         controls_chart_layout.addWidget(self.match_chart_widget)
         main_layout.addLayout(controls_chart_layout, 3) 
@@ -251,7 +265,8 @@ class MainWindow(QMainWindow):
 
     def update_matches_chart_and_guess(self, raw_match_count_from_thread):
         actual_plot_count = raw_match_count_from_thread if raw_match_count_from_thread >= 0 else 0
-
+        
+       
         self.raw_match_history.append(actual_plot_count)
         self.time_points.append(self.current_time_step)
         self.current_time_step += 1
@@ -283,12 +298,12 @@ class MainWindow(QMainWindow):
 
                 if is_above or is_below: 
                     
-                    if self.preset_guess_sequence:
-                        current_preset_output = self.preset_guess_sequence.popleft() #parallelize
+                    if preset_guess_sequence:
+                        current_preset_output = preset_guess_sequence.popleft() #parallelize
 
                         comparison_text = f"Raw ({current_preset_output}) is {'High' if is_above else 'Low'} Avg ({current_avg:.2f})"
 
-                        self.preset_guess_sequence.append(current_preset_output) 
+                        preset_guess_sequence.append(current_preset_output) 
 
                         guess_display_message = f"Analysis: {comparison_text}. --> Preset Output: {current_preset_output}"
                         
