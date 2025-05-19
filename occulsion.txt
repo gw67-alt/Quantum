@@ -1,0 +1,1 @@
+Contour occlusion of an sphere situated near a photonic lattice, the topology is beyond classical search abilities.
