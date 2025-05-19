@@ -1,1 +1,1 @@
-Contour occlusion of a sphere situated near a photonic lattice, selecting the intersection between event space and topology is beyond classical search abilities.
+Contour occlusion of a sphere situated near a photonic lattice, selecting the intersection between volumetric topology and event space is beyond classical search abilities.
