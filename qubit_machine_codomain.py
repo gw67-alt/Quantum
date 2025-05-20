@@ -390,7 +390,7 @@ class MainWindow(QMainWindow):
         # Check if the match count is below threshold
         is_below = match_count < self.current_threshold
 
-        if not is_below and game_state["credits"] > 0:
+        if is_below and game_state["credits"] > 0:
             self.ready_count += 1
             
             # Guard against empty data list
@@ -414,7 +414,7 @@ class MainWindow(QMainWindow):
                     self.show_status_message(f"Lost! {current_value} ≠ 0x55. -{COST_PER_GUESS} credits. (Threshold: {self.current_threshold:.2f})", 2000)
                     
                 # Log debug info
-                print(f"Guessed 'High': {current_value} @ init {self.init_count}, " 
+                print(f"Guessed 'Below': {current_value} @ init {self.init_count}, " 
                       f"Ready: {self.ready_count}, Success: {self.success_count}, "
                       f"Credits: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
                       
@@ -430,7 +430,7 @@ class MainWindow(QMainWindow):
             game_state["credits"] -= COST_PER_GUESS
             game_state["losses"] = game_state.get("losses", 0) + 1
             self.show_status_message(f"Guessed High: Lost {COST_PER_GUESS} credits. (Threshold: {self.current_threshold:.2f})", 2000)
-            print(f"Guessed 'Below', Lost {COST_PER_GUESS} Credits. Total: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
+            print(f"Guessed 'High', Lost {COST_PER_GUESS} Credits. Total: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
             
         # Update UI with new game state
         self.app_state.update_game_state(game_state)
