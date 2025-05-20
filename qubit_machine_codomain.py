@@ -401,7 +401,7 @@ class MainWindow(QMainWindow):
                 
             try:
                 # Try to interpret the current data value as hex
-                current_value = data[self.data_index].strip()
+                current_value = data[self.init_count].strip()
                 hex_value = int(current_value, 16)
                 
                 if hex_value == 0x55:  # Win condition 
