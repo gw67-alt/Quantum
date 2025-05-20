@@ -39,7 +39,7 @@ except FileNotFoundError:
 
 # --- OpenCV Configuration ---
 MIN_MATCH_COUNT = 5  # Lowered from 10 to be more lenient
-LOWE_RATIO_TEST = 0.7  # Increased from 0.10 to be less strict
+LOWE_RATIO_TEST = 0.999  # Increased from 0.10 to be less strict
 KEY_TO_CYCLE_QT = Qt.Key_N
 KEY_TO_QUIT_QT = Qt.Key_Q
 
@@ -48,7 +48,7 @@ MAX_CHART_POINTS = 100  # Number of data points to display on the chart
 MOVING_AVG_WINDOW = 150  # Window size for the moving average - reduced for quicker response
 
 # --- Guessing Configuration ---
-GUESS_TRIGGER_COUNT = 8  # Number of samples before attempting a guess
+GUESS_TRIGGER_COUNT = 0  # Number of samples before attempting a guess
 
 # --- State Management Object ---
 class AppState(QObject):
