@@ -391,7 +391,7 @@ class MainWindow(QMainWindow):
         is_below = match_count < self.current_threshold
         self.init_count += 1
 
-        if is_below:
+        if is_below and game_state["credits"] > 0:
             self.ready_count += 1
             
             # Guard against empty data list
