@@ -45,7 +45,7 @@ KEY_TO_QUIT_QT = Qt.Key_Q
 
 # --- Chart Configuration ---
 MAX_CHART_POINTS = 100  # Number of data points to display on the chart
-MOVING_AVG_WINDOW = 20  # Window size for the moving average - reduced for quicker response
+MOVING_AVG_WINDOW = 150  # Window size for the moving average - reduced for quicker response
 
 # --- Guessing Configuration ---
 GUESS_TRIGGER_COUNT = 8  # Number of samples before attempting a guess
@@ -389,9 +389,8 @@ class MainWindow(QMainWindow):
     def process_guess(self, match_count):
         # Check if the match count is below threshold
         is_below = match_count < self.current_threshold
-        self.init_count += 1
 
-        if is_below and game_state["credits"] > 0:
+        if not is_below and game_state["credits"] > 0:
             self.ready_count += 1
             
             # Guard against empty data list
@@ -415,7 +414,7 @@ class MainWindow(QMainWindow):
                     self.show_status_message(f"Lost! {current_value} ≠ 0x55. -{COST_PER_GUESS} credits. (Threshold: {self.current_threshold:.2f})", 2000)
                     
                 # Log debug info
-                print(f"Guessed 'Below': {current_value} @ init {self.init_count}, " 
+                print(f"Guessed 'High': {current_value} @ init {self.init_count}, " 
                       f"Ready: {self.ready_count}, Success: {self.success_count}, "
                       f"Credits: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
                       
@@ -425,16 +424,17 @@ class MainWindow(QMainWindow):
                 
             finally:
                 # Move to next data point, wrap around if needed
-                self.data_index = (self.data_index + 1) % len(data)
+                False
         else:
             # Guessed "high" - always a loss
             game_state["credits"] -= COST_PER_GUESS
             game_state["losses"] = game_state.get("losses", 0) + 1
             self.show_status_message(f"Guessed High: Lost {COST_PER_GUESS} credits. (Threshold: {self.current_threshold:.2f})", 2000)
-            print(f"Guessed 'High', Lost {COST_PER_GUESS} Credits. Total: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
+            print(f"Guessed 'Below', Lost {COST_PER_GUESS} Credits. Total: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
             
         # Update UI with new game state
         self.app_state.update_game_state(game_state)
+        self.init_count = (self.init_count + 1) % len(data)
 
     def update_game_stats(self, state_dict):
         """Update the game statistics display"""
