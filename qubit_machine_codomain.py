@@ -611,18 +611,20 @@ class MainWindow(QMainWindow):
                     ("= 0x55" if hex_value == 0x55 else "≠ 0x55") + 
                     f". -{COST_PER_GUESS} credits.", 2000)
             
-            if cam0_below and cam1_below and hex_value != 0x55:
-                game_state["losses"] = game_state.get("losses", 0) + 1
             # Win condition: Both cameras are below threshold AND value is 0x55
 
-            if cam0_below and cam1_below and hex_value == 0x55:
-                # Win scenario
-                game_state["credits"] += COST_PER_GUESS
-                game_state["wins"] = game_state.get("wins", 0) + 1
-                print("Success @ ", game_state["losses"], " Ready states!")
-                self.show_status_message(
-                    f"Win! {camera_status} | {current_value} = 0x55. +{WIN_CREDITS} credits!", 2000)
+            if cam0_below and cam1_below:
+                if hex_value == 0x55: # measure comparisons
+                    # Win scenario
+                    game_state["credits"] += COST_PER_GUESS
+                    game_state["wins"] = game_state.get("wins", 0) + 1
+                    print("Success @ ", game_state["losses"], " Ready states!")
+                    self.show_status_message(
+                        f"Win! {camera_status} | {current_value} = 0x55. +{WIN_CREDITS} credits!", 2000)
+                else:
+                    game_state["losses"] = game_state.get("losses", 0) + 1
             else:
+
                 # Any other scenario is a loss
                 game_state["credits"] -= COST_PER_GUESS
                 self.show_status_message(
