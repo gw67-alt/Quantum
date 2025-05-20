@@ -619,6 +619,7 @@ class MainWindow(QMainWindow):
                 # Win scenario
                 game_state["credits"] += COST_PER_GUESS
                 game_state["wins"] = game_state.get("wins", 0) + 1
+                print("Success @ ", game_state["losses"], " Ready states!")
                 self.show_status_message(
                     f"Win! {camera_status} | {current_value} = 0x55. +{WIN_CREDITS} credits!", 2000)
             else:
