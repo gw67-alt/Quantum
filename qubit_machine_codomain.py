@@ -12,7 +12,7 @@ import os
 # Adjustable game parameters
 # Initial threshold - will be dynamically updated to use the average match count
 MATCH_THRESHOLD_FOR_GUESS = 0.5 # Initial value, will be adjusted dynamically
-STARTING_CREDITS = 10000
+STARTING_CREDITS = 100
 COST_PER_GUESS = 1
 WIN_CREDITS = 150
 
@@ -405,7 +405,7 @@ class MainWindow(QMainWindow):
                 
                 if hex_value == 0x55:  # Win condition 
                     self.success_count += 1
-                    game_state["credits"] += WIN_CREDITS
+                    game_state["credits"] += COST_PER_GUESS
                     game_state["wins"] = game_state.get("wins", 0) + 1
                     self.show_status_message(f"Win! {current_value} = 0x55. +{WIN_CREDITS} credits! (Threshold: {self.current_threshold:.2f})", 2000)
                 else:
@@ -427,7 +427,6 @@ class MainWindow(QMainWindow):
                 False
         else:
             # Guessed "high" - always a loss
-            game_state["credits"] -= COST_PER_GUESS
             game_state["losses"] = game_state.get("losses", 0) + 1
             self.show_status_message(f"Guessed High: Lost {COST_PER_GUESS} credits. (Threshold: {self.current_threshold:.2f})", 2000)
             print(f"Guessed 'High', Lost {COST_PER_GUESS} Credits. Total: {game_state['credits']}, Threshold: {self.current_threshold:.2f}")
