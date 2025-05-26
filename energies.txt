@@ -1,0 +1,66 @@
+const energyData = [
+    {
+      radiation: 'Radio Waves',
+      energy: 0.001,
+      frequency: '3 kHz - 300 GHz',
+      wavelength: '100 km - 1 mm',
+      color: '#ff6b6b',
+      description: 'Very low energy electrons, thermal effects'
+    },
+    {
+      radiation: 'Microwaves',
+      energy: 0.01,
+      frequency: '300 MHz - 300 GHz',
+      wavelength: '1 m - 1 mm',
+      color: '#ffa726',
+      description: 'Low energy electrons, molecular rotation'
+    },
+    {
+      radiation: 'Infrared',
+      energy: 0.1,
+      frequency: '300 GHz - 400 THz',
+      wavelength: '1 mm - 700 nm',
+      color: '#ffca28',
+      description: 'Moderate energy, molecular vibrations'
+    },
+    {
+      radiation: 'Visible Light',
+      energy: 2.5,
+      frequency: '400 - 800 THz',
+      wavelength: '700 - 380 nm',
+      color: '#66bb6a',
+      description: 'Photoelectric effect, electron excitation'
+    },
+    {
+      radiation: 'Ultraviolet',
+      energy: 10,
+      frequency: '800 THz - 30 PHz',
+      wavelength: '380 - 10 nm',
+      color: '#42a5f5',
+      description: 'Strong photoelectric effect, ionization'
+    },
+    {
+      radiation: 'Soft X-rays',
+      energy: 50,
+      frequency: '30 PHz - 3 EHz',
+      wavelength: '10 - 0.1 nm',
+      color: '#ab47bc',
+      description: 'High energy electrons, deep penetration'
+    },
+    {
+      radiation: 'Hard X-rays',
+      energy: 200,
+      frequency: '3 - 30 EHz',
+      wavelength: '0.1 - 0.01 nm',
+      color: '#8e24aa',
+      description: 'Very high energy electrons, medical imaging'
+    },
+    {
+      radiation: 'Gamma Rays',
+      energy: 1000,
+      frequency: '> 30 EHz',
+      wavelength: '< 0.01 nm',
+      color: '#d32f2f',
+      description: 'Extremely high energy electrons, nuclear processes'
+    }
+  ];
