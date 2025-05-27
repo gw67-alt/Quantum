@@ -1,1 +1,1 @@
-Entangled Spin Polarization between an photon probe & emitter. Simply place a polarizer in the center and direct the materials to themselves to create a CP violation.
+Entangled Spin Polarization between an photon probe & emitter. Simply place a polarizer in the center and direct the materials to themselves to simulate a CP violation.
