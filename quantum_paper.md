@@ -29,11 +29,11 @@
 ### Physical Layout
 
 ```
-[Laser] → [Beam Splitter] → [Observer A: Full APD]
-              ↓
-         [Variable Polarizer] → [Observer B: Semi-blocked APD]
-              ↓
-         [Correlation Processor] → [Data Analysis]
+[Laser] → [Beam Splitter]      → [Observer A: Full APD]         → [Correlation Processor] → [Data Analysis]
+              ↓                                                          ↓
+          [Variable Polarizer] → [Observer B: Semi-blocked APD] → [Correlation Processor] → 
+
+         
 ```
 
 ---
@@ -61,7 +61,7 @@
 ### Phase 2: Hidden Variable Detection (Day 3-7)
 
 #### 2.1 Semi-Blocking Configuration
-**Setup**: Observer B with polarizer at 45° (semi-blocking), Observer A unblocked
+**Setup**: Observer B with polarizer at 90°, Observer A unblocked (semi-blocking)
 
 **Measurement Protocol**:
 1. **Rapid Sampling**: 1 million measurements at 1 MHz
@@ -76,11 +76,11 @@
 - Environmental parameters
 
 #### 2.2 Angular Sweep Protocol
-**Objective**: Map correlation as function of polarizer angle
+**Objective**: Map correlation as function of polarizer status
 
-1. **Angle Steps**: 0° to 180° in 2° increments
-2. **Dwell Time**: 60 seconds per angle
-3. **Measurements**: 60,000 samples per angle
+1. **Angle Steps**: 1mm - 5mm ° in 1mm° increments
+2. **Dwell Time**: 60 seconds per increment
+3. **Measurements**: 60,000 samples per increment
 4. **Repetitions**: 3 complete sweeps
 
 #### 2.3 Temporal Correlation Analysis
@@ -105,19 +105,7 @@ C₁₂ = ⟨I₁I₂⟩ - ⟨I₁⟩⟨I₂⟩ / (σ₁σ₂)
 - **Classical Theory**: C₁₂ ≈ 0 (within shot noise)
 - **Hidden Variable Theory**: |C₁₂| > 3σ_noise
 
-#### 2.2 Bell-Type Inequality Test
-**Modified CHSH Inequality**:
-```
-S = |E(a,b) - E(a,b')| + |E(a',b) + E(a',b')| ≤ 2
-```
-
-Where E(a,b) is correlation at polarizer angles a,b
-
-**Test Angles**:
-- a = 0°, a' = 45°
-- b = 22.5°, b' = 67.5°
-
-#### 2.3 Hidden Variable Signatures
+#### 2.2 Hidden Variable Signatures
 
 **Deterministic Pattern Detection**:
 1. **Fourier Analysis**: Search for non-random frequencies in ΔI = I₁ - I₂
@@ -128,28 +116,6 @@ Where E(a,b) is correlation at polarizer angles a,b
 - Plot I₁ vs I₂ for different time windows
 - Look for structured trajectories vs random cloud
 - Calculate phase space density variations
-
----
-
-## Expected Results & Interpretation
-
-### Scenario 1: No Hidden Variables (Standard QM)
-- **Correlation**: C₁₂ ≈ 0 ± shot noise
-- **Bell Parameter**: S ≤ 2 (classical bound respected)
-- **Phase Space**: Random Gaussian cloud
-- **Frequency Spectrum**: White noise (1/f at low frequencies)
-
-### Scenario 2: Local Hidden Variables
-- **Correlation**: Significant C₁₂ but S ≤ 2
-- **Angular Dependence**: Smooth variation with polarizer angle
-- **Temporal Patterns**: Reproducible but no Bell violation
-- **Phase Space**: Structured but classically bounded
-
-### Scenario 3: Non-Local Hidden Variables
-- **Correlation**: Strong C₁₂ with S > 2 (Bell violation)
-- **Angular Dependence**: Non-classical oscillations
-- **Temporal Patterns**: Non-random with specific frequencies
-- **Phase Space**: Spiral or limit-cycle structures
 
 ---
 
@@ -197,7 +163,7 @@ Where E(a,b) is correlation at polarizer angles a,b
 
 ### Day 3-4: Primary Data Collection
 - Hidden variable detection runs
-- Angular sweep measurements  
+- Sweep measurements  
 - High-speed temporal analysis
 - Environmental stability tests
 
@@ -224,30 +190,10 @@ Where E(a,b) is correlation at polarizer angles a,b
 
 ---
 
-## Publication Strategy
-
-### Positive Result (Hidden Variables Detected)
-- **Title**: "Experimental Evidence for Hidden Deterministic Forces in Quantum Measurement"
-- **Journals**: Physical Review Letters, Nature Physics
-- **Key Claims**: Bell violation with local realism preserved
-
-### Negative Result (No Hidden Variables)
-- **Title**: "Precision Test of Quantum Nonlocality in Dual Observer Systems"  
-- **Journals**: Physical Review A, Optics Express
-- **Key Claims**: Improved bounds on hidden variable theories
-
-### Follow-up Studies
-1. **Different Particle Types**: Photons → electrons → atoms
-2. **Macroscopic Systems**: Optomechanical oscillators
-3. **Quantum Network**: Multiple observer nodes
-4. **Device-Independent**: Minimize measurement assumptions
-
----
-
 ## Conclusion
 
 This experiment design provides a rigorous test for hidden deterministic forces in quantum systems through the novel approach of semi-blocked dual observers. The key innovation is using the **differential measurement ΔI = I₁ - I₂** as a probe for hidden variable effects while maintaining precise control over classical correlations.
 
-Success would represent a fundamental shift in our understanding of quantum mechanics, potentially revealing the deterministic substrate underlying apparent quantum randomness. Even a negative result would significantly constrain hidden variable theories and strengthen the foundations of standard quantum mechanics.
+Success would represent a fundamental shift in our understanding of quantum mechanics, potentially revealing the deterministic substrate underlying apparent quantum randomness. 
 
 The experimental approach is technically feasible with current technology and provides multiple cross-checks against systematic errors and alternative explanations.
