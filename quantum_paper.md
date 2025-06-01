@@ -3,7 +3,7 @@
 ## Experiment Overview
 **Objective**: Detect hidden deterministic forces through differential intensity measurements in a semi-blocked dual observer setup using polarized laser light.
 
-**Hypothesis**: If hidden variables exist, the correlation between two quantum observers will reveal non-random patterns that violate classical expectations when one observer is partially blocked by a polarizer.
+**Hypothesis**: If hidden variables exist, the correlation between two quantum observers will reveal non-random patterns that violate classical expectations when one observer is blocked by a polarizer.
 
 ---
 
