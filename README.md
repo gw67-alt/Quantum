@@ -1,4 +1,4 @@
-What I am trying to prove with laser technology:
+laser technology:
 
 Every future state will automatically cooperate to achieve rough parity.
 
