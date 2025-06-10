@@ -1,0 +1,1 @@
+Energy struck electrons alter its orbitals. Think of a cheap coffee table and an empty can as the electron orbital, hit the tabletop and the empty can spins. Can't remember if it is one or two location dependent directions you have to try it yourself.
